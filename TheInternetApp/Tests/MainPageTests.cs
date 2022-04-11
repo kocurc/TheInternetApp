@@ -1,16 +1,22 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using TheInternetApp.Factories;
 using TheInternetApp.PageObjects.MainPage;
 
 namespace TheInternetApp.Tests;
 
+[TestFixture]
 public class MainPageTests
 {
     private readonly MainPageObject _mainPageObject;
 
+    public IWebDriver WebDriver { get; init; }
+
     public MainPageTests()
     {
-        _mainPageObject = new MainPageObject();
+        WebDriver = WebDriverFactory.CreateWebDriver(WebBrowserType.MicrosoftEdge);
+        _mainPageObject = new MainPageObject(WebDriver);
     }
 
     [SetUp]
@@ -22,7 +28,7 @@ public class MainPageTests
     [Test]
     public void MainHeader_Value()
     {
-        _mainPageObject.MainHeader.Text.Should().Be(MainPageConstants.SubheaderValue);
+        _mainPageObject.MainHeader.Text.Should().Be(MainPageConstants.MainHeaderValue);
     }
 
     [Test]

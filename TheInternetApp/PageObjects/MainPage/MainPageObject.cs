@@ -21,7 +21,7 @@ public class MainPageObject : BasePageObject
 
     #endregion
 
-    public MainPageObject()
+    public MainPageObject(IWebDriver webDriver) : base(webDriver)
     {
         _uri = new Uri(MainPageConstants.MainPageUri);
         _mainHeaderLocator = By.ClassName(MainPageConstants.MainHeaderClassName);
