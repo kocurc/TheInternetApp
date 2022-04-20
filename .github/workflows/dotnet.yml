@@ -36,7 +36,9 @@ jobs: # Jobs run in parallel.
       uses: actions/download-artifact@v3 # Download artifacts from build.
       with: # Parameters for download-artifact action.
         name: build-artifacts # Name of the artifacts.
+    - name: Restore dependencies
+      run: dotnet restore
     - name: Build
-      run: dotnet build
+      run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal

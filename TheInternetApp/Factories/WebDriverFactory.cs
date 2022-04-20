@@ -13,6 +13,7 @@ public static class WebDriverFactory
             case WebBrowserType.GoogleChrome:
                 ChromeOptions chromeOptions = new();
                 chromeOptions.AddArgument("--headless");
+                chromeOptions.AddArgument("--no-sandbox");
                 return new ChromeDriver("./", chromeOptions);
             case WebBrowserType.MicrosoftEdge:
                 EdgeOptions edgeOptions = new();
