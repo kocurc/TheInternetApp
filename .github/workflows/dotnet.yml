@@ -25,6 +25,31 @@ jobs: # Jobs run in parallel.
   googleChromeSystemTests: # ID of the job.
     needs: SetUpEnvironment
     runs-on: windows-latest
+    env:
+      WebBrowser: GoogleChrome
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    - name: Setup .NET environment
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3 # Download artifacts from build.
+      with: # Parameters for download-artifact action.
+        name: build-artifacts # Name of the artifacts.
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+
+  microsoftEdgeTests: # ID of the job.
+    needs: SetUpEnvironment
+    runs-on: windows-latest
+    env:
+      WebBrowser: MicrosoftEdge
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
