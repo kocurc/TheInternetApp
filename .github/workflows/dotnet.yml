@@ -4,7 +4,11 @@ on: [push, pull_request] # Defining events section.
 
 jobs: # Jobs run in parallel.
   SetUpEnvironment: # ID of the job.
-    runs-on: windows-latest # Type of a machine from enum to run a the workflow on.
+    strategy: # Matrix of build varations.
+      matrix:
+        operating-system: [macos-latest, windows-latest, ubuntu-latest]
+        web-browser: [GoogleChrome, MicrosoftEdge]
+    runs-on: ${{ matrix.operating-system }} # Type of a machine from enum to run a the workflow on.
     steps: # Step of a job. Each step runs as a separate process in a virtual machine environment.
     - name: Checkout repository # Name of an action
       uses: actions/checkout@v3 # This action checks-out repository under $GITHUB_WORKSPACE
@@ -12,21 +16,19 @@ jobs: # Jobs run in parallel.
       uses: actions/setup-dotnet@v2 # This actions sets up a .NET CLI enironemnt.
       with: # Parameters for setup-dotnet action.
         dotnet-version: 6.0.x # SDK version to use. x means the latest version.
-    - name: Restore dependencies # Name of an action.
-      run: dotnet restore # Run system command in a new virtual environment and process. Restores depenendcies including NuGet.
     - name: Build # Name of an action.
-      run: dotnet build --no-restore # Run system command in a new virtual environment and process. Build project into binaries. Does not do restore while compiling.
+      run: dotnet build # Run system command in a new virtual environment and process. Build project into binaries. Does not do restore while compiling.
     - name: Upload build artifacts # Name of an action
       uses: actions/upload-artifact@v3 # Upload artifacts from your workflow to share between jobs
       with: # Parameters for upload-artifact action.
         name: build-artifacts # Name of the artifacts.
         path: TheInternetApp/bin/Debug/net6.0/
 
-  googleChromeSystemTests: # ID of the job.
+  webBrowserSystemAndUiTests: # ID of the job.
     needs: SetUpEnvironment
-    runs-on: windows-latest
+    runs-on: ${{ matrix.operating-system }}
     env:
-      WebBrowser: GoogleChrome
+      WebBrowser: ${{ Matrix.web-browser }}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -38,32 +40,5 @@ jobs: # Jobs run in parallel.
       uses: actions/download-artifact@v3 # Download artifacts from build.
       with: # Parameters for download-artifact action.
         name: build-artifacts # Name of the artifacts.
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
-
-  microsoftEdgeTests: # ID of the job.
-    needs: SetUpEnvironment
-    runs-on: windows-latest
-    env:
-      WebBrowser: MicrosoftEdge
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - name: Setup .NET environment
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
-    - name: Download build artifacts
-      uses: actions/download-artifact@v3 # Download artifacts from build.
-      with: # Parameters for download-artifact action.
-        name: build-artifacts # Name of the artifacts.
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
