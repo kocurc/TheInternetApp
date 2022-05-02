@@ -25,6 +25,10 @@ jobs: # Jobs run in parallel.
         path: TheInternetApp/bin/Debug/net6.0/
 
   webBrowserSystemAndUiTests: # ID of the job.
+    strategy: # Matrix of build varations.
+      matrix:
+        operating-system: [macos-latest, windows-latest, ubuntu-latest]
+        web-browser: [GoogleChrome, MicrosoftEdge]
     needs: SetUpEnvironment
     runs-on: ${{ matrix.operating-system }}
     env:
