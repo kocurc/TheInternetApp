@@ -1,21 +1,44 @@
-name: .NET
+name: CI # Name of the workflow.
 
-on: [push, pull_request]
+on: [push, pull_request] # Defining events section.
 
-jobs:
-  build:
+jobs: # Jobs run in parallel.
+  SetUpEnvironment: # ID of the job.
+    runs-on: windows-latest # Type of a machine from enum to run a the workflow on.
+    steps: # Step of a job. Each step runs as a separate process in a virtual machine environment.
+    - name: Checkout repository # Name of an action
+      uses: actions/checkout@v3 # This action checks-out repository under $GITHUB_WORKSPACE
+    - name: Setup .NET environment # Name of an action
+      uses: actions/setup-dotnet@v2 # This actions sets up a .NET CLI enironemnt.
+      with: # Parameters for setup-dotnet action.
+        dotnet-version: 6.0.x # SDK version to use. x means the latest version.
+    - name: Build # Name of an action.
+      run: dotnet build # Run system command in a new virtual environment and process. Build project into binaries. Does not do restore while compiling.
+    - name: Upload build artifacts # Name of an action
+      uses: actions/upload-artifact@v3 # Upload artifacts from your workflow to share between jobs
+      with: # Parameters for upload-artifact action.
+        name: build-artifacts # Name of the artifacts.
+        path: TheInternetApp/bin/Debug/net6.0/
 
-    runs-on: windows-latest
-
+  webBrowserSystemAndUiTests: # ID of the job.
+    strategy: # Matrix of build varations.
+      matrix:
+        operating-system: [macos-latest, windows-latest, ubuntu-latest]
+        web-browser: [GoogleChrome, MicrosoftEdge]
+    needs: SetUpEnvironment
+    runs-on: ${{ matrix.operating-system }}
+    env:
+      WebBrowser: ${{ Matrix.web-browser }}
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    - name: Setup .NET environment
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3 # Download artifacts from build.
+      with: # Parameters for download-artifact action.
+        name: build-artifacts # Name of the artifacts.
     - name: Test
       run: dotnet test --no-build --verbosity normal

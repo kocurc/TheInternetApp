@@ -15,7 +15,7 @@ public class MainPageTests
 
     public MainPageTests()
     {
-        WebDriver = WebDriverFactory.CreateWebDriver(WebBrowserType.MicrosoftEdge);
+        WebDriver = WebDriverFactory.CreateWebDriver(Environment.GetEnvironmentVariable("WebBrowser") ?? "GoogleChrome");
         _mainPageObject = new MainPageObject(WebDriver);
     }
 
