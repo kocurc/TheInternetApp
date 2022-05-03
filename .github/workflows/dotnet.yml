@@ -4,7 +4,7 @@ on: [push, pull_request] # Defining events section.
 
 jobs: # Jobs run in parallel.
   SetUpEnvironment: # ID of the job.
-    runs-on: windows-latest # Type of a machine from enum to run a the workflow on.
+    runs-on: ubuntu-latest # Type of a machine from enum to run a the workflow on.
     steps: # Step of a job. Each step runs as a separate process in a virtual machine environment.
     - name: Checkout repository # Name of an action
       uses: actions/checkout@v3 # This action checks-out repository under $GITHUB_WORKSPACE
@@ -20,12 +20,20 @@ jobs: # Jobs run in parallel.
         name: build-artifacts # Name of the artifacts.
         path: TheInternetApp/bin/Debug/net6.0/
 
+  dockerApplicationSetUp:
+    runs-on: ubuntu-latest
+    steps:
+    - name : Pull docker image
+      run: docker pull gprestes/the-internet # Run command in a shell.
+    - name: Run docker image
+      run: docker run -d -p 7080:5000 gprestes/the-internet
+
   webBrowserSystemAndUiTests: # ID of the job.
     strategy: # Matrix of build varations.
       matrix:
         operating-system: [macos-latest, windows-latest, ubuntu-latest]
         web-browser: [GoogleChrome, MicrosoftEdge]
-    needs: SetUpEnvironment
+    needs: [SetUpEnvironment, dockerApplicationSetUp]
     runs-on: ${{ matrix.operating-system }}
     env:
       WebBrowser: ${{ Matrix.web-browser }}

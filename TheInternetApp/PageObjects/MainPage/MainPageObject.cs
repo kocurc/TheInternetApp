@@ -23,7 +23,7 @@ public class MainPageObject : BasePageObject
 
     public MainPageObject(IWebDriver webDriver) : base(webDriver)
     {
-        _uri = new Uri(MainPageConstants.MainPageUri);
+        _uri = new Uri(MainPageConstants.MainPageUriDocker);
         _mainHeaderLocator = By.ClassName(MainPageConstants.MainHeaderClassName);
         _subheaderLocator = By.TagName("h2");
     }

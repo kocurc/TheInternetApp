@@ -8,11 +8,13 @@ public class MainPageConstants
 
 
     #region PageElementsValues
-
     public const string MainHeaderValue = "Welcome to the-internet";
     public const string SubheaderValue = "Available Examples";
-
     #endregion
 
+    #region PageUris
     public const string MainPageUri = "http://the-internet.herokuapp.com/";
+    public const string MainPageUriDocker = "http://localhost:7080/";
+    #endregion
+
 }
