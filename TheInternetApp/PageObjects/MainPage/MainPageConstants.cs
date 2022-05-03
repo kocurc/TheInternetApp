@@ -15,4 +15,5 @@ public class MainPageConstants
     #endregion
 
     public const string MainPageUri = "http://the-internet.herokuapp.com/";
+    public const string MainPageUriDocker = "http://localhost:7080/";
 }

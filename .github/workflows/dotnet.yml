@@ -20,12 +20,20 @@ jobs: # Jobs run in parallel.
         name: build-artifacts # Name of the artifacts.
         path: TheInternetApp/bin/Debug/net6.0/
 
+  dockerApplicationSetUp:
+    runs-on: windows-latest
+    steps:
+    - name : Pull docker image
+      run: docker pull gprestes/the-internet
+    - name: Run docker image
+      run: docker run -d -p 7080:5000 gprestes/the-internet
+
   webBrowserSystemAndUiTests: # ID of the job.
     strategy: # Matrix of build varations.
       matrix:
         operating-system: [macos-latest, windows-latest, ubuntu-latest]
         web-browser: [GoogleChrome, MicrosoftEdge]
-    needs: SetUpEnvironment
+    needs: [SetUpEnvironment, dockerApplicationSetUp]
     runs-on: ${{ matrix.operating-system }}
     env:
       WebBrowser: ${{ Matrix.web-browser }}
