@@ -24,7 +24,7 @@ jobs: # Jobs run in parallel.
     runs-on: windows-latest
     steps:
     - name : Pull docker image
-      run: docker pull gprestes/the-internet
+      run: docker pull gprestes/the-internet # Run command in a shell.
     - name: Run docker image
       run: docker run -d -p 7080:5000 gprestes/the-internet
 
