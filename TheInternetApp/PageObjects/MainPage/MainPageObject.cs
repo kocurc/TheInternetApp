@@ -5,7 +5,8 @@ namespace TheInternetApp.PageObjects.MainPage;
 
 public class MainPageObject : BasePageObject
 {
-    private readonly Uri _uri;
+    public const string Uri = MainPageConstants.MainPageUriDocker;
+    // public const string Uri = "http://the-internet.herokuapp.com/";
 
     #region PageElementsLocators
 
@@ -23,13 +24,14 @@ public class MainPageObject : BasePageObject
 
     public MainPageObject(IWebDriver webDriver) : base(webDriver)
     {
-        _uri = new Uri(MainPageConstants.MainPageUriDocker);
         _mainHeaderLocator = By.ClassName(MainPageConstants.MainHeaderClassName);
         _subheaderLocator = By.TagName("h2");
     }
 
-    public override void NavigateTo()
+    public override string NavigateTo(string uri)
     {
-        WebDriver.Navigate().GoToUrl(_uri);
+        WebDriver.Navigate().GoToUrl(uri);
+
+        return uri;
     }
 }

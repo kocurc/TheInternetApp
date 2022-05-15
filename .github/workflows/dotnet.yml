@@ -28,7 +28,7 @@ jobs: # Jobs run in parallel.
     - name: Run docker image
       run: docker run -d -p 7080:5000 gprestes/the-internet
 
-  webBrowserSystemAndUiTests: # ID of the job.
+  webBrowserSystemTests: # ID of the job.
     strategy: # Matrix of build varations.
       matrix:
         operating-system: [macos-latest, windows-latest, ubuntu-latest]
@@ -38,8 +38,6 @@ jobs: # Jobs run in parallel.
     env:
       WebBrowser: ${{ Matrix.web-browser }}
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
     - name: Setup .NET environment
       uses: actions/setup-dotnet@v2
       with:
@@ -50,3 +48,20 @@ jobs: # Jobs run in parallel.
         name: build-artifacts # Name of the artifacts.
     - name: Test
       run: dotnet test --no-build --verbosity normal
+
+  webBrowserUiTests:
+    strategy:
+      matrix:
+        testcafe-script-webbrowser: [chrome, edge]
+        operating-system: [macos-latest, windows-latest, ubuntu-latest]
+    needs: [SetUpEnvironment, dockerApplicationSetUp]
+    runs-on: ${{ matrix.operating-system }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: 17.9.0
+    - name: Test
+      run: npm --prefix TheInternetApp\UiTests run test:${{ testcafe-script-webbrowser }}:headless

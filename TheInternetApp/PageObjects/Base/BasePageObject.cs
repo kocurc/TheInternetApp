@@ -11,5 +11,5 @@ public abstract class BasePageObject
         WebDriver = webDriver;
     }
 
-    public abstract void NavigateTo();
+    public abstract string NavigateTo(string uri);
 }
