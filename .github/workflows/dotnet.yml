@@ -38,6 +38,8 @@ jobs: # Jobs run in parallel.
     env:
       WebBrowser: ${{ matrix.web-browser }}
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
     - name: Setup .NET environment
       uses: actions/setup-dotnet@v2
       with:
