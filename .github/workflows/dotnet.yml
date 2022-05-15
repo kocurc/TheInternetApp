@@ -61,11 +61,11 @@ jobs: # Jobs run in parallel.
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-    - name: Setup testcafe environment
-      uses: DevExpress/testcafe-action@latest
     - name: Setup Node.js environment
       uses: actions/setup-node@v3
       with:
         node-version: 17.9.0
-    - name: Test
-      run: npm --prefix ./TheInternetApp/UiTests run test:${{ matrix.testcafe-script-webbrowser }}:headless
+    - name: Setup testcafe environment
+      uses: DevExpress/testcafe-action@latest
+      with:
+        args: "${{ matrix.testcafe-script-webbrowser }}:headless ./TheInternetApp/UiTests/Tests"
