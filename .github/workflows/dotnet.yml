@@ -52,10 +52,7 @@ jobs: # Jobs run in parallel.
       run: dotnet test --no-build --verbosity normal
 
   webBrowserUiTests:
-    strategy:
-      matrix:
-        operating-system: [windows-latest, ubuntu-latest]
-    runs-on: ${{ matrix.operating-system }}
+    runs-on: ubuntu-latest
     steps:
     - name : Pull docker image
       run: docker pull gprestes/the-internet # Run command in a shell.
