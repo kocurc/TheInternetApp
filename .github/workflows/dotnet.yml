@@ -52,13 +52,12 @@ jobs: # Jobs run in parallel.
       run: dotnet test --no-build --verbosity normal
 
   webBrowserUiTests:
-    needs: dockerApplicationSetUp
     runs-on: ubuntu-latest
     steps:
-    # - name : Pull docker image
-    #   run: docker pull gprestes/the-internet # Run command in a shell.
-    # - name: Run docker image
-    #   run: docker run -d -p 7080:5000 gprestes/the-internet
+    - name : Pull docker image
+      run: docker pull gprestes/the-internet # Run command in a shell.
+    - name: Run docker image
+      run: docker run -d -p 7080:5000 gprestes/the-internet
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Setup Node.js environment
