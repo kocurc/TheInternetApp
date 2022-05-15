@@ -55,7 +55,7 @@ jobs: # Jobs run in parallel.
     strategy:
       matrix:
         operating-system: [macos-latest, windows-latest, ubuntu-latest]
-    needs: [SetUpEnvironment, dockerApplicationSetUp]
+    needs: dockerApplicationSetUp
     runs-on: ${{ matrix.operating-system }}
     steps:
     - name: Checkout repository

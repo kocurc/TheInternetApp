@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
 
-fixture('Tests related to main page').page('http://localhost:7080/')
+fixture('Tests related to main page').page('http://127.0.0.1:7080/')
     .before(async testController => {
         // runs code before fixture - setup
     })

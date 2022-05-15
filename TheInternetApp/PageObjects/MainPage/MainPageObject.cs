@@ -6,7 +6,6 @@ namespace TheInternetApp.PageObjects.MainPage;
 public class MainPageObject : BasePageObject
 {
     public const string Uri = MainPageConstants.MainPageUriDocker;
-    // public const string Uri = "http://the-internet.herokuapp.com/";
 
     #region PageElementsLocators
 
