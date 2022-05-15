@@ -36,7 +36,7 @@ jobs: # Jobs run in parallel.
     needs: [SetUpEnvironment, dockerApplicationSetUp]
     runs-on: ${{ matrix.operating-system }}
     env:
-      WebBrowser: ${{ Matrix.web-browser }}
+      WebBrowser: ${{ matrix.web-browser }}
     steps:
     - name: Setup .NET environment
       uses: actions/setup-dotnet@v2
@@ -64,4 +64,4 @@ jobs: # Jobs run in parallel.
       with:
         node-version: 17.9.0
     - name: Test
-      run: npm --prefix TheInternetApp\UiTests run test:${{ testcafe-script-webbrowser }}:headless
+      run: npm --prefix TheInternetApp\UiTests run test:${{ matrix.testcafe-script-webbrowser }}:headless
