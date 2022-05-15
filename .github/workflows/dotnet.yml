@@ -54,7 +54,7 @@ jobs: # Jobs run in parallel.
   webBrowserUiTests:
     strategy:
       matrix:
-        operating-system: [macos-latest, windows-latest, ubuntu-latest]
+        operating-system: [windows-latest, ubuntu-latest]
     runs-on: ${{ matrix.operating-system }}
     steps:
     - name : Pull docker image
