@@ -54,7 +54,6 @@ jobs: # Jobs run in parallel.
   webBrowserUiTests:
     strategy:
       matrix:
-        testcafe-script-webbrowser: [chrome, edge]
         operating-system: [macos-latest, windows-latest, ubuntu-latest]
     needs: [SetUpEnvironment, dockerApplicationSetUp]
     runs-on: ${{ matrix.operating-system }}
@@ -68,4 +67,4 @@ jobs: # Jobs run in parallel.
     - name: Setup testcafe environment
       uses: DevExpress/testcafe-action@latest
       with:
-        args: "${{ matrix.testcafe-script-webbrowser }}:headless ./TheInternetApp/UiTests/Tests"
+        args: "chrome:headless ./TheInternetApp/UiTests/Tests"
