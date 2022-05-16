@@ -53,6 +53,7 @@ jobs: # Jobs run in parallel.
 
   webBrowserUiTests:
     runs-on: ubuntu-latest
+    needs: SetUpEnvironment
     steps:
     - name : Pull docker image
       run: docker pull gprestes/the-internet # Run command in a shell.

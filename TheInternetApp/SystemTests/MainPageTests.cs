@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 using TheInternetApp.PageObjects.MainPage;
+using TheInternetApp.Utilities;
 
 namespace TheInternetApp.SystemTests;
 
@@ -20,20 +21,20 @@ public class MainPageTests : BaseTests
     {
         var uri = _mainPageObject.NavigateTo(MainPageObject.Uri);
 
-        Logger.Info($"Managed to navigate to Main page URI: {uri}.");
+        MyLogger.GetInstance().Info($"Managed to navigate to Main page URI: {uri}.");
     }
 
     [Test(Description = "Main header value")]
     public void MainHeader_Value()
     {
-        Logger.Info("Stared test: Main header value.");
+        MyLogger.GetInstance().Info("Stared test: Main header value.");
         _mainPageObject.MainHeader.Text.Should().Be(MainPageConstants.MainHeaderValue);
     }
 
     [Test(Description = "Subheader value")]
     public void Subheader_Value()
     {
-        Logger.Info("Stared test: Subheader Value.");
+        MyLogger.GetInstance().Info("Stared test: Subheader Value.");
         _mainPageObject.Subheader.Text.Should().Be(MainPageConstants.SubheaderValue);
     }
 }
