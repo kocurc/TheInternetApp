@@ -5,8 +5,6 @@ namespace TheInternetApp.PageObjects.MainPage;
 
 public class MainPageObject : BasePageObject
 {
-    public const string Uri = MainPageConstants.MainPageUriDocker;
-
     #region PageElementsLocators
 
     private readonly By _mainHeaderLocator;
@@ -25,12 +23,5 @@ public class MainPageObject : BasePageObject
     {
         _mainHeaderLocator = By.ClassName(MainPageConstants.MainHeaderClassName);
         _subheaderLocator = By.TagName("h2");
-    }
-
-    public override string NavigateTo(string uri)
-    {
-        WebDriver.Navigate().GoToUrl(uri);
-
-        return uri;
     }
 }

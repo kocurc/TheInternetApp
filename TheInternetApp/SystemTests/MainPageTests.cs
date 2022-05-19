@@ -10,7 +10,6 @@ public class MainPageTests : BaseTests
 {
     private readonly MainPageObject _mainPageObject;
 
-
     public MainPageTests()
     {
         _mainPageObject = new MainPageObject(WebDriver);
@@ -19,7 +18,9 @@ public class MainPageTests : BaseTests
     [SetUp]
     public void SetUp()
     {
-        var uri = _mainPageObject.NavigateTo(MainPageObject.Uri);
+        MyLogger.GetInstance().Info($"Started {this.GetType()} tests.");
+
+        var uri = _mainPageObject.NavigateTo(MainPageConstants.MainPageUriDocker);
 
         MyLogger.GetInstance().Info($"Managed to navigate to Main page URI: {uri}.");
     }

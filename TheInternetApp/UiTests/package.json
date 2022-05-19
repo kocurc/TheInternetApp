@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:chrome": "testcafe chrome ./Tests",
-    "test:chrome:headless": "testcafe chrome:headless ./Tests",
-    "test:chrome:mobile": "testcafe chrome:headless:emulation:device=iphone X ./Tests",
+    "test:chrome": "testcafe chrome ./Tests --disable-page-caching",
+    "test:chrome:headless": "testcafe chrome:headless ./Tests --disable-page-caching",
+    "test:chrome:mobile": "testcafe chrome:headless:emulation:device=iphone X ./Tests --disable-page-caching",
     "test:edge": "testcafe edge ./Tests",
     "test:edge:headless": "testcafe edge:headless ./Tests"
   },

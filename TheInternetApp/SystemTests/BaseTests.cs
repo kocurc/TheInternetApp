@@ -12,7 +12,6 @@ public class BaseTests
 
     public BaseTests()
     {
-        MyLogger.GetInstance().Info("Started Main page tests.");
         WebDriver = WebDriverFactory.CreateWebDriver(Environment.GetEnvironmentVariable("WebBrowser") ?? "GoogleChrome");
         MyLogger.GetInstance().Info($"Web driver for browser: {WebDriver} has been created.");
     }
