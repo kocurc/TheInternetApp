@@ -6,14 +6,21 @@ using TheInternetApp.Utilities;
 
 namespace TheInternetApp.SystemTests;
 
-public class BaseTests
+public class BaseTests : IDisposable
 {
+    private bool _disposedValue;
+
     public IWebDriver WebDriver { get; init; }
 
     public BaseTests()
     {
         WebDriver = WebDriverFactory.CreateWebDriver(Environment.GetEnvironmentVariable("WebBrowser") ?? "GoogleChrome");
         MyLogger.GetInstance().Info($"Web driver for browser: {WebDriver} has been created.");
+    }
+
+    ~BaseTests()
+    {
+        Dispose(false);
     }
 
     [TearDown]
@@ -33,5 +40,33 @@ public class BaseTests
             MyLogger.GetInstance().Error($"Test did not run properly. Reason: {TestContext.CurrentContext.Result.Message}. " +
                                          $"Stack trace: {TestContext.CurrentContext.Result.StackTrace}.");
         }
+    }
+    
+    protected virtual void Dispose(bool disposing)
+    {
+        // If true - do not allow redundant Dispose calls.
+        if (_disposedValue)
+        {
+            return;
+        }
+
+        // If true - release managed resources.
+        if (disposing) 
+        {
+            WebDriver.Close();
+            WebDriver.Quit();
+            WebDriver.Dispose();
+        }
+
+        // Space for Dispose(false) - where unmanaged resources should be released, like File handles
+        // And large fields set to null as well.
+
+        _disposedValue = true;
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
 }

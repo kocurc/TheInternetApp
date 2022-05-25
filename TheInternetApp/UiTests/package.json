@@ -4,15 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:chrome": "testcafe chrome ./Tests --disable-page-caching",
-    "test:chrome:headless": "testcafe chrome:headless ./Tests --disable-page-caching",
-    "test:chrome:mobile": "testcafe chrome:headless:emulation:device=iphone X ./Tests --disable-page-caching",
-    "test:edge": "testcafe edge ./Tests",
-    "test:edge:headless": "testcafe edge:headless ./Tests"
+    "test:chrome": "testcafe chrome ./Tests --reporter list",
+    "test:chrome:c3": "testcafe -c 3 chrome ./Tests --reporter list",
+    "test:chrome:headless": "testcafe chrome:headless ./Tests --reporter list",
+    "test:chrome:headless:c3": "testcafe -c 3 chrome:headless ./Tests --reporter list",
+    "test:chrome:mobile": "testcafe chrome:headless:emulation:device=iphone X ./Tests --reporter list",
+    "test:chrome:mobile:c3": "testcafe -c 3 chrome:headless:emulation:device=iphone X ./Tests --reporter list",
+    "test:edge": "testcafe edge ./Tests --reporter list",
+    "test:edge:c3": "testcafe -c 3 edge ./Tests --reporter list",
+    "test:edge:headless": "testcafe edge:headless ./Tests --reporter list",
+    "test:edge:headless:c3": "testcafe -c 3 edge:headless ./Tests --reporter list"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "testcafe": "^1.18.6"
+    "testcafe": "^1.18.6",
+    "testcafe-reporter-list": "^2.1.0"
   }
 }

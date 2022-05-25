@@ -1,6 +1,6 @@
-import { Selector, t } from 'testcafe';
 import  mainPageDictionary from '../Dictionaries/main-page-dictionary'
 import { mainPageObject } from '../PageObjects/main-page.po';
+import { ClientFunction } from 'testcafe';
 
 fixture('Tests related to main page').page('http://127.0.0.1:7080/')
     .before(async testController => {
@@ -8,7 +8,6 @@ fixture('Tests related to main page').page('http://127.0.0.1:7080/')
     })
     .beforeEach(async testController => {
         await testController.setTestSpeed(1);
-        await testController.setPageLoadTimeout(10000);
     })
     .after(async testController => {
         // runs code after fixture is finished - cleaning
@@ -23,15 +22,13 @@ test('Main header value', async testController => {
 
 test('Subheader value', async testController => {
     await testController.wait(1000);
-    await testController.expect(Selector('h2').innerText).eql(mainPageDictionary.headers.subheader);
+    await testController.expect(mainPageObject.subheader.innerText).eql(mainPageDictionary.headers.subheader);
 });
 
-test.skip('Skip test', async testController => {
-    await testController.wait(1000);
-});
+test('A/B Testing link points to abtest page', async testController => {
+    await testController.click(mainPageObject.abTestingLink);
 
-test.skip('Take screenshot', async testController => {
-    await testController.takeScreenshot({ path: "../Screenshots/", fullPage: true});
-    await t.takeElementScreenshot(mainPageObject.mainHeader);
-    await testController.wait(1000);
+    const getUrl = ClientFunction(() => document.location.href);
+
+    await testController.expect(getUrl()).contains('abtest')
 });

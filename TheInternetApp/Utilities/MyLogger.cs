@@ -7,10 +7,7 @@ public class MyLogger : ILogger
     private static MyLogger? _instance;
     private static Logger? _logger;
 
-    private MyLogger()
-    {
-
-    }
+    private MyLogger() { }
 
     public static MyLogger GetInstance()
     {
@@ -23,7 +20,7 @@ public class MyLogger : ILogger
         return _instance;
     }
 
-    private Logger GetLogger(string logger)
+    private static Logger GetLogger(string logger)
     {
         return MyLogger._logger ?? (MyLogger._logger = LogManager.GetLogger(logger));
     }
