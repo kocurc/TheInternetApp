@@ -29,11 +29,15 @@ public static class WebDriverFactory
 
     public static IWebDriver CreateWebDriver(string webBrowserType)
     {
+        ChromeOptions chromeOptions = new();
+
         switch (webBrowserType)
         {
             case "GoogleChrome":
-                ChromeOptions chromeOptions = new();
                 chromeOptions.AddArgument("--headless");
+                chromeOptions.AddArgument("--no-sandbox");
+                return new ChromeDriver("./", chromeOptions);
+            case "GoogleChromeHeadful":
                 chromeOptions.AddArgument("--no-sandbox");
                 return new ChromeDriver("./", chromeOptions);
             case "MicrosoftEdge":

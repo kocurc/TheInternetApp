@@ -16,6 +16,10 @@ fixture('Tests related to main page').page('http://127.0.0.1:7080/')
         // runs code afer each test
     });
 
+test('Fork me on Github image when clicked directs me to the Github source repository', async testController => {
+
+});
+
 test('Main header value', async testController => {
     await testController.expect(mainPageObject.mainHeader.innerText).eql(mainPageDictionary.headers.mainHeader);
 });
@@ -27,8 +31,5 @@ test('Subheader value', async testController => {
 
 test('A/B Testing link points to abtest page', async testController => {
     await testController.click(mainPageObject.abTestingLink);
-
-    const getUrl = ClientFunction(() => document.location.href);
-
-    await testController.expect(getUrl()).contains('abtest')
+    await mainPageObject.assertUrlContains('abtest');
 });

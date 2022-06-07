@@ -18,7 +18,7 @@ public class MainPageTests : BaseTests
     [SetUp]
     public void SetUp()
     {
-        MyLogger.GetInstance().Info($"Started {this.GetType()} tests.");
+        MyLogger.GetInstance().Info($"Started {this.GetType()} test.");
 
         var uri = _mainPageObject.NavigateTo(MainPageConstants.MainPageUriDocker);
 
@@ -28,14 +28,14 @@ public class MainPageTests : BaseTests
     [Test(Description = "Main header value")]
     public void MainHeader_Value()
     {
-        MyLogger.GetInstance().Info("Stared test: Main header value.");
+        MyLogger.GetInstance().Info("Started test: Main header value.");
         _mainPageObject.MainHeader.Text.Should().Be(MainPageConstants.MainHeaderValue);
     }
 
     [Test(Description = "Subheader value")]
     public void Subheader_Value()
     {
-        MyLogger.GetInstance().Info("Stared test: Subheader Value.");
+        MyLogger.GetInstance().Info("Started test: Subheader Value.");
         _mainPageObject.Subheader.Text.Should().Be(MainPageConstants.SubheaderValue);
     }
 }

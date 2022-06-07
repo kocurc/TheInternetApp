@@ -13,7 +13,8 @@
     "test:edge": "testcafe edge ./Tests --reporter list",
     "test:edge:c3": "testcafe -c 3 edge ./Tests --reporter list",
     "test:edge:headless": "testcafe edge:headless ./Tests --reporter list",
-    "test:edge:headless:c3": "testcafe -c 3 edge:headless ./Tests --reporter list"
+    "test:edge:headless:c3": "testcafe -c 3 edge:headless ./Tests --reporter list",
+    "test:multiple": "testcafe chrome,firefox ./Tests"
   },
   "author": "",
   "license": "ISC",

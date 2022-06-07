@@ -14,7 +14,10 @@ public class BaseTests : IDisposable
 
     public BaseTests()
     {
-        WebDriver = WebDriverFactory.CreateWebDriver(Environment.GetEnvironmentVariable("WebBrowser") ?? "GoogleChrome");
+        var x = Environment.GetEnvironmentVariable("WebBrowser");
+
+        WebDriver = WebDriverFactory.CreateWebDriver(Environment.GetEnvironmentVariable("WebBrowser") ??
+                                                     "GoogleChromeHeadful");
         MyLogger.GetInstance().Info($"Web driver for browser: {WebDriver} has been created.");
     }
 

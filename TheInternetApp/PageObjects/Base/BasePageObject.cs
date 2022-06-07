@@ -20,4 +20,22 @@ public abstract class BasePageObject
 
         return uri;
     }
+
+    public void Refresh()
+    {
+        WebDriver.Navigate().Refresh();
+    }
+
+    public void MoveToElement(IWebElement webElement)
+    {
+        try
+        {
+            Action.MoveToElement(webElement).Perform();
+        }
+        catch (StaleElementReferenceException innerStaleElementReferenceException)
+        {
+            throw new StaleElementReferenceException($"Failed to locate an element: {webElement}",
+                innerStaleElementReferenceException);
+        }
+    }
 }
