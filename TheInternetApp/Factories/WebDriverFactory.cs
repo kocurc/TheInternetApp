@@ -36,14 +36,14 @@ public static class WebDriverFactory
             case "GoogleChrome":
                 chromeOptions.AddArgument("--headless");
                 chromeOptions.AddArgument("--no-sandbox");
-                return new ChromeDriver("./", chromeOptions);
+                return new ChromeDriver("", chromeOptions);
             case "GoogleChromeHeadful":
                 chromeOptions.AddArgument("--no-sandbox");
-                return new ChromeDriver("./", chromeOptions);
+                return new ChromeDriver("", chromeOptions);
             case "MicrosoftEdge":
                 EdgeOptions edgeOptions = new();
                 edgeOptions.AddArgument("--headless");
-                return new EdgeDriver("./", edgeOptions);
+                return new EdgeDriver("", edgeOptions);
             default:
                 throw new ArgumentOutOfRangeException(nameof(webBrowserType), webBrowserType, null);
         }
