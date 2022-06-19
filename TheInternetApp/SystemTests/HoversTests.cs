@@ -1,7 +1,5 @@
-﻿using System.Reflection;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using TheInternetApp.PageObjects.Hovers;
 using TheInternetApp.Utilities;
 

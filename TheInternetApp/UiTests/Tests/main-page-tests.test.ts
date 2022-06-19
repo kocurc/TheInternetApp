@@ -1,4 +1,4 @@
-import  mainPageDictionary from '../Dictionaries/main-page-dictionary'
+import  mainPageDictionary from '../Dictionaries/main-page-dictionary';
 import { mainPageObject } from '../PageObjects/main-page.po';
 import { ClientFunction } from 'testcafe';
 

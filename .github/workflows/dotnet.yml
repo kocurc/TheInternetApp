@@ -50,6 +50,11 @@ jobs: # Jobs run in parallel.
         name: build-artifacts # Name of the artifacts.
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Upload logs from System tests # Name of an action
+      uses: actions/upload-artifact@v3 # Upload artifacts from your workflow to share between jobs
+      with: # Parameters for upload-artifact action.
+        name: system-tests-logs # Name of the artifacts.
+        path: TheInternetApp/bin/Debug/net6.0/logs
 
   webBrowserUiTests:
     runs-on: ubuntu-latest
