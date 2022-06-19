@@ -55,6 +55,11 @@ jobs: # Jobs run in parallel.
       with: # Parameters for upload-artifact action.
         name: system-tests-logs # Name of the artifacts.
         path: TheInternetApp/bin/Debug/net6.0/logs/
+    - name: Upload build artifacts # Name of an action
+      uses: actions/upload-artifact@v3 # Upload artifacts from your workflow to share between jobs
+      with: # Parameters for upload-artifact action.
+        name: build-artifacts-${{ matrix.operating-system }}-${{ matrix.web-browser }} # Name of the artifacts.
+        path: TheInternetApp/bin/Debug/net6.0/
 
   webBrowserUiTests:
     runs-on: ubuntu-latest
