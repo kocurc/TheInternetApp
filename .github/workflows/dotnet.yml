@@ -49,7 +49,7 @@ jobs: # Jobs run in parallel.
       with: # Parameters for download-artifact action.
         name: build-artifacts # Name of the artifacts.
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --verbosity normal
     - name: Upload logs from System tests # Name of an action
       uses: actions/upload-artifact@v3 # Upload artifacts from your workflow to share between jobs
       with: # Parameters for upload-artifact action.
