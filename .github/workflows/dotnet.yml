@@ -44,10 +44,12 @@ jobs: # Jobs run in parallel.
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
-    - name: Download build artifacts
-      uses: actions/download-artifact@v3 # Download artifacts from build.
-      with: # Parameters for download-artifact action.
-        name: build-artifacts # Name of the artifacts.
+    #- name: Download build artifacts
+      #uses: actions/download-artifact@v3 # Download artifacts from build.
+      #with: # Parameters for download-artifact action.
+        #name: build-artifacts # Name of the artifacts.
+    - name: Build # Name of an action.
+      run: dotnet build # Run system command in a new virtual environment and process. Build project into binaries. Does not do restore while compiling.
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Upload logs from System tests # Name of an action
@@ -55,11 +57,11 @@ jobs: # Jobs run in parallel.
       with: # Parameters for upload-artifact action.
         name: system-tests-logs # Name of the artifacts.
         path: TheInternetApp/bin/Debug/net6.0/logs/
-    - name: Upload build artifacts # Name of an action
-      uses: actions/upload-artifact@v3 # Upload artifacts from your workflow to share between jobs
-      with: # Parameters for upload-artifact action.
-        name: build-artifacts-${{ matrix.operating-system }}-${{ matrix.web-browser }} # Name of the artifacts.
-        path: TheInternetApp/bin/Debug/net6.0/
+    #- name: Upload build artifacts # Name of an action
+      #uses: actions/upload-artifact@v3 # Upload artifacts from your workflow to share between jobs
+      #with: # Parameters for upload-artifact action.
+        #name: build-artifacts-${{ matrix.operating-system }}-${{ matrix.web-browser }} # Name of the artifacts.
+        #path: TheInternetApp/bin/Debug/net6.0/
 
   webBrowserUiTests:
     runs-on: ubuntu-latest
