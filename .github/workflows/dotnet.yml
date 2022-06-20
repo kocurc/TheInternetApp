@@ -31,7 +31,8 @@ jobs: # Jobs run in parallel.
   webBrowserSystemTests: # ID of the job.
     strategy: # Matrix of build varations.
       matrix:
-        operating-system: [macos-latest, windows-latest, ubuntu-latest]
+        #operating-system: [macos-latest, windows-latest, ubuntu-latest]
+        operating-system: [windows-latest]
         web-browser: [GoogleChrome, MicrosoftEdge]
     needs: [SetUpEnvironment, dockerApplicationSetUp]
     runs-on: ${{ matrix.operating-system }}
