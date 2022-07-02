@@ -20,7 +20,7 @@ public class HoversTests : BaseTests
     {
         MyLogger.GetInstance().Info($"Started {this.GetType()} test.");
 
-        var uri = _hoversPageObject?.NavigateTo(HoversPageConstants.HoversPageUriDocker);
+        var uri = _hoversPageObject?.NavigateTo(HoversPageConstants.HoversPageUri);
 
         MyLogger.GetInstance().Debug($"Structure of tests: {_hoversPageObject}.");
         MyLogger.GetInstance().Info($"Managed to navigate to Main page URI: {uri}.");

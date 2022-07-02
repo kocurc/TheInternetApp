@@ -20,7 +20,7 @@ public class MainPageTests : BaseTests
     {
         MyLogger.GetInstance().Info($"Started {this.GetType()} test.");
 
-        var uri = _mainPageObject.NavigateTo(MainPageConstants.MainPageUriDocker);
+        var uri = _mainPageObject.NavigateTo(MainPageConstants.MainPageUri);
 
         MyLogger.GetInstance().Info($"Managed to navigate to Main page URI: {uri}.");
     }
