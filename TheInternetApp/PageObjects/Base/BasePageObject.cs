@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using TheInternetApp.Utilities;
 
 namespace TheInternetApp.PageObjects.Base;
 
@@ -16,7 +17,18 @@ public abstract class BasePageObject
 
     public virtual string NavigateTo(string uri)
     {
-        WebDriver.Navigate().GoToUrl(uri);
+        try
+        {
+            WebDriver.Navigate().GoToUrl(uri);
+        }
+        catch (WebDriverException webDriverException)
+        {
+
+            MyLogger.GetInstance().Error($"Failed to connect to url: {uri}.");
+
+            throw new WebDriverException($"Failed to connect to url: {uri}.", webDriverException);
+        }
+
 
         return uri;
     }
