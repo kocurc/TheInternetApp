@@ -48,8 +48,6 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: build-artifacts
-    #- name: Build # Name of an action.
-      #run: dotnet build # Run system command in a new virtual environment and process. Build project into binaries. Does not do restore while compiling.
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Upload logs from System tests
@@ -61,7 +59,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts-${{ matrix.operating-system }}-${{ matrix.web-browser }}
-        path: TheInternetApp/bin/Debug/net6.0/
+        path: ${{ github.workspace }} 
 
   webBrowserUiTests:
     runs-on: ubuntu-latest
