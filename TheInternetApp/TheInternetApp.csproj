@@ -7,14 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="App.config" />
     <None Remove="C:\Users\kordi\.nuget\packages\nlog.config\4.7.15\contentFiles\any\any\NLog.config" />
+    <None Remove="C:\Users\kordi\.nuget\packages\nlog.schema\5.0.1\contentFiles\any\any\NLog.xsd" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageReference Include="NLog" Version="5.0.1" />
-    <PackageReference Include="NLog.Config" Version="4.7.15" />
     <PackageReference Include="NLog.Schema" Version="5.0.1" />
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
