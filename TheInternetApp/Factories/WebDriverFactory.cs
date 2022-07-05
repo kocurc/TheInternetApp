@@ -29,17 +29,22 @@ public static class WebDriverFactory
 
     public static IWebDriver CreateWebDriver(string webBrowserType)
     {
+        ChromeOptions chromeOptions = new();
+        var webDriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
         switch (webBrowserType)
         {
             case "GoogleChrome":
-                ChromeOptions chromeOptions = new();
                 chromeOptions.AddArgument("--headless");
                 chromeOptions.AddArgument("--no-sandbox");
-                return new ChromeDriver("./", chromeOptions);
+                return new ChromeDriver(webDriverPath, chromeOptions);
+            case "GoogleChromeHeadful":
+                chromeOptions.AddArgument("--no-sandbox");
+                return new ChromeDriver(webDriverPath, chromeOptions);
             case "MicrosoftEdge":
                 EdgeOptions edgeOptions = new();
                 edgeOptions.AddArgument("--headless");
-                return new EdgeDriver("./", edgeOptions);
+                return new EdgeDriver(webDriverPath, edgeOptions);
             default:
                 throw new ArgumentOutOfRangeException(nameof(webBrowserType), webBrowserType, null);
         }

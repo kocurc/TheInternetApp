@@ -1,0 +1,13 @@
+{
+    "screenshots": {
+        "path": "./screenshots",
+        "pathPattern": "${DATE}_${TIME}/${BROWSER}/${FIXTURE}-${FILE_INDEX}.png",
+        "fullPage": false,
+        "thumbnails": false,
+        "takeOnFails": true
+    },
+    "skipUncaughtErrors": true,
+    "disablePageCaching": true,
+    "pageLoadTimeout": 10000,
+    "selectorTimeout": 3000
+}

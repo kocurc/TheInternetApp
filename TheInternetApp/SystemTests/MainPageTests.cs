@@ -1,39 +1,41 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using TheInternetApp.Factories;
 using TheInternetApp.PageObjects.MainPage;
+using TheInternetApp.Utilities;
 
-namespace TheInternetApp.Tests;
+namespace TheInternetApp.SystemTests;
 
 [TestFixture]
-public class MainPageTests
+public class MainPageTests : BaseTests
 {
     private readonly MainPageObject _mainPageObject;
 
-    public IWebDriver WebDriver { get; init; }
-
     public MainPageTests()
     {
-        WebDriver = WebDriverFactory.CreateWebDriver(Environment.GetEnvironmentVariable("WebBrowser") ?? "GoogleChrome");
         _mainPageObject = new MainPageObject(WebDriver);
     }
 
     [SetUp]
     public void SetUp()
     {
-        _mainPageObject.NavigateTo();
+        MyLogger.GetInstance().Info($"Started {this.GetType()} test.");
+
+        var uri = _mainPageObject.NavigateTo(MainPageConstants.MainPageUri);
+
+        MyLogger.GetInstance().Info($"Managed to navigate to Main page URI: {uri}.");
     }
 
-    [Test]
+    [Test(Description = "Main header value")]
     public void MainHeader_Value()
     {
+        MyLogger.GetInstance().Info("Started test: Main header value.");
         _mainPageObject.MainHeader.Text.Should().Be(MainPageConstants.MainHeaderValue);
     }
 
-    [Test]
+    [Test(Description = "Subheader value")]
     public void Subheader_Value()
     {
+        MyLogger.GetInstance().Info("Started test: Subheader Value.");
         _mainPageObject.Subheader.Text.Should().Be(MainPageConstants.SubheaderValue);
     }
 }
