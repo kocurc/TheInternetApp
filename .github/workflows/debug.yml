@@ -12,10 +12,6 @@ jobs:
   SetUpEnvironment:
     runs-on: ubuntu-latest
     steps:
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-      if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
-      timeout-minutes: 15
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Setup .NET environment
@@ -61,10 +57,13 @@ jobs:
       if: matrix.operating-system == 'ubuntu-latest'
       run: |
         mkdir ./TheInternetApp/bin/Debug/net6.0/logs
-        ls ./TheInternetApp/bin/Debug/net6.0/
-
+        ls ./TheInternetApp/bin/Debug/net6.0/    
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
+      timeout-minutes: 15
     - name: Upload logs from System tests
       uses: actions/upload-artifact@v3
       with:

@@ -52,7 +52,6 @@ jobs:
       run: |
         mkdir ./TheInternetApp/bin/Debug/net6.0/logs
         ls ./TheInternetApp/bin/Debug/net6.0/
-
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Upload logs from System tests
