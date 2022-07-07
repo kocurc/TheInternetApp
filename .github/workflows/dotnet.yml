@@ -48,7 +48,7 @@ jobs:
         name: build-artifacts
         path: ./
     - name: Create logs folder
-      if: matrix.operating-system == ubuntu-latest
+      if: matrix.operating-system == 'ubuntu-latest'
       run: |
         mkdir -p ./TheInternetApp/bin/Debug/net6.0/logs/
         ls ./
