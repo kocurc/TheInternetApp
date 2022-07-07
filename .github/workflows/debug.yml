@@ -1,11 +1,21 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'     
+        required: false
+        default: false
 
 jobs:
   SetUpEnvironment:
     runs-on: ubuntu-latest
     steps:
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
+      timeout-minutes: 15
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Setup .NET environment
