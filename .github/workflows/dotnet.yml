@@ -50,8 +50,8 @@ jobs:
     - name: Create logs folder
       if: matrix.operating-system == 'ubuntu-latest'
       run: |
-        mkdir -p ./TheInternetApp/bin/Debug/net6.0/logs/
-        ls ./
+        mkdir ./TheInternetApp/bin/Debug/net6.0/logs
+        ls ./TheInternetApp/bin/Debug/net6.0/
 
     - name: Test
       run: dotnet test --no-build --verbosity normal
