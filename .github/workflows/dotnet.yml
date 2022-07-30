@@ -94,8 +94,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-    - name: Run usability tests
+    - name: Install dependencies
       working-directory: ./TheInternetApp/UiTests
-      run: |
-        npm install
-        npm run usability-test-pa11y
+      shell: pwsh
+      run: npm install
+    - name: Run usability tests script
+      working-directory: ./TheInternetApp/UiTests
+      shell: pwsh
+      run: npm run usability-test-pa11y
