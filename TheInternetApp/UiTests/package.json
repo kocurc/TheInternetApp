@@ -14,11 +14,14 @@
     "test:edge:c3": "testcafe -c 3 edge ./Tests --reporter list",
     "test:edge:headless": "testcafe edge:headless ./Tests --reporter list",
     "test:edge:headless:c3": "testcafe -c 3 edge:headless ./Tests --reporter list",
-    "test:multiple": "testcafe chrome,firefox ./Tests"
+    "test:multiple": "testcafe chrome,firefox ./Tests",
+    "usability-test-pa11y": "./node_modules/.bin/pa11y-ci"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "pa11y-ci": "^3.0.1",
+    "pa11y-ci-reporter-html": "^5.0.1",
     "testcafe": "^1.18.6",
     "testcafe-reporter-list": "^2.1.0"
   }

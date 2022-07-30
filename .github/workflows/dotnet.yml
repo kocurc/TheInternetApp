@@ -1,6 +1,10 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '25 22 * * *'
 
 jobs:
   SetUpEnvironment:
@@ -83,3 +87,15 @@ jobs:
       uses: DevExpress/testcafe-action@latest
       with:
         args: "chrome:headless ./TheInternetApp/UiTests/Tests"
+
+  usabilityTests:
+    runs-on: ubuntu-latest
+    needs: [SetUpEnvironment, dockerApplicationSetUp]
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    - name: Run usability tests
+      working-directory: ./TheInternetApp/UiTests
+      run: |
+        npm install
+        npm run usability-test-pa11y

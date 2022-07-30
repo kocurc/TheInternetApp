@@ -1,0 +1,57 @@
+{
+  "defaults": {
+    "timeout": 10000,
+    "reporters": [
+      [
+        "pa11y-ci-reporter-html",
+        { "destination": "./usability_tests_reports", "includeZeroIssues": true }
+      ]
+    ]
+
+  },
+  "urls": [
+    "http://the-internet.herokuapp.com/",
+    "http://the-internet.herokuapp.com/abtest",
+    "http://the-internet.herokuapp.com/add_remove_elements/",
+    "http://the-internet.herokuapp.com/broken_images",
+    "http://the-internet.herokuapp.com/challenging_dom",
+    "http://the-internet.herokuapp.com/checkboxes",
+    "http://the-internet.herokuapp.com/context_menu",
+    "http://the-internet.herokuapp.com/disappearing_elements",
+    "http://the-internet.herokuapp.com/drag_and_drop",
+    "http://the-internet.herokuapp.com/dropdown",
+    "http://the-internet.herokuapp.com/dynamic_content",
+    "http://the-internet.herokuapp.com/dynamic_controls",
+    "http://the-internet.herokuapp.com/dynamic_loading",
+    "http://the-internet.herokuapp.com/entry_ad",
+    "http://the-internet.herokuapp.com/exit_intent",
+    "http://the-internet.herokuapp.com/download",
+    "http://the-internet.herokuapp.com/upload",
+    "http://the-internet.herokuapp.com/floating_menu",
+    "http://the-internet.herokuapp.com/forgot_password",
+    "http://the-internet.herokuapp.com/login",
+    "http://the-internet.herokuapp.com/frames",
+    "http://the-internet.herokuapp.com/geolocation",
+    "http://the-internet.herokuapp.com/horizontal_slider",
+    "http://the-internet.herokuapp.com/hovers",
+    "http://the-internet.herokuapp.com/infinite_scroll",
+    "http://the-internet.herokuapp.com/inputs",
+    "http://the-internet.herokuapp.com/jqueryui/menu",
+    "http://the-internet.herokuapp.com/javascript_alerts",
+    "http://the-internet.herokuapp.com/javascript_error",
+    "http://the-internet.herokuapp.com/key_presses",
+    "http://the-internet.herokuapp.com/large",
+    "http://the-internet.herokuapp.com/windows",
+    "http://the-internet.herokuapp.com/nested_frames",
+    "http://the-internet.herokuapp.com/notification_message_rendered",
+    "http://the-internet.herokuapp.com/redirector",
+    "http://the-internet.herokuapp.com/download_secure",
+    "http://the-internet.herokuapp.com/shadowdom",
+    "http://the-internet.herokuapp.com/shifting_content",
+    "http://the-internet.herokuapp.com/slow",
+    "http://the-internet.herokuapp.com/tables",
+    "http://the-internet.herokuapp.com/status_codes",
+    "http://the-internet.herokuapp.com/typos",
+    "http://the-internet.herokuapp.com/tinymce"
+  ]
+}
