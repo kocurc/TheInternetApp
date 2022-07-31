@@ -100,7 +100,7 @@ jobs:
       shell: pwsh
       run: npm install
     - name: List bin pa11y folder # temporary step
-      working-directory: ./TheInternetApp/UiTests/node_modules/bin/pa11y
+      working-directory: ./TheInternetApp/UiTests/
       shell: pwsh
       run: Get-ChildItem -Recurse
     - name: Run usability tests script
