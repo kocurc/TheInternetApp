@@ -105,8 +105,8 @@ jobs:
       run: npm run usability-test-pa11y
     - name: List bin pa11y folder # temporary step
       working-directory: ./TheInternetApp/UiTests/
-      shell: pwsh
-      run: Get-ChildItem
+      shell: bash
+      run: ls -al
     - name: Upload usability tests reports
       uses: actions/upload-artifact@v3
       with:
