@@ -102,7 +102,12 @@ jobs:
     - name: List bin pa11y folder # temporary step
       working-directory: ./TheInternetApp/UiTests/
       shell: pwsh
-      run: Get-ChildItem -Recurse
+      run: Get-ChildItem -Recurse > file.text
+    - name: Upload ls output
+      uses: actions/upload-artifact@v3
+      with:
+        name: ls-output
+        path: file.txt
     - name: Run usability tests script
       working-directory: ./TheInternetApp/UiTests
       shell: pwsh
