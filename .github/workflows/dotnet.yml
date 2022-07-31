@@ -106,7 +106,7 @@ jobs:
     - name: List bin pa11y folder # temporary step
       working-directory: ./TheInternetApp/UiTests/node_modules/.bin
       shell: bash
-      run: ls -al
+      run: ls
     - name: Upload usability tests reports
       uses: actions/upload-artifact@v3
       with:
