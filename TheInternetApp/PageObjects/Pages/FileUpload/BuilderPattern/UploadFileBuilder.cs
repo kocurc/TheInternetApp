@@ -1,17 +1,28 @@
-﻿namespace TheInternetApp.PageObjects.Pages.FileUpload.BuilderPattern
+﻿using OpenQA.Selenium.DevTools.V101.Browser;
+
+namespace TheInternetApp.PageObjects.Pages.FileUpload.BuilderPattern
 {
     public class UploadFileBuilder
     {
         private readonly UploadFile _uploadFile = new UploadFile();
 
-        public void SetFileName(string fileName)
+        public UploadFile Build()
         {
-            _uploadFile.Name = fileName;
+            return _uploadFile;
         }
 
-        public void SetFilePath(string filePath)
+        public UploadFileBuilder SetFileName(string fileName)
+        {
+            _uploadFile.Name = fileName;
+
+            return this;
+        }
+
+        public UploadFileBuilder SetFilePath(string filePath)
         {
             _uploadFile.FilePath = filePath;
+
+            return this;
         }
     }
 }

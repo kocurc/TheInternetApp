@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using TheInternetApp.PageObjects.Pages.SortableDataTables.Interfaces;
 using TheInternetApp.PageObjects.Pages.SortableDataTables.Interfaces.InterfaceSegregationPrinciple;
 
 namespace TheInternetApp.PageObjects.Pages.SortableDataTables.DataTable;

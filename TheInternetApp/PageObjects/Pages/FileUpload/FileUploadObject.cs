@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using TheInternetApp.PageObjects.Base;
 using TheInternetApp.PageObjects.Pages.FileUpload.BuilderPattern;
-using TheInternetApp.PageObjects.Pages.FileUpload.FileUploader;
 using TheInternetApp.PageObjects.Pages.FileUpload.FileUploader.OpenClosedPrinciple;
 
 namespace TheInternetApp.PageObjects.Pages.FileUpload
