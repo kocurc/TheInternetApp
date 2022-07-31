@@ -1,4 +1,4 @@
-﻿namespace TheInternetApp.PageObjects.Pages.FileUpload
+﻿namespace TheInternetApp.PageObjects.Pages.FileUpload.BuilderPattern
 {
     public class UploadFile
     {
@@ -25,7 +25,7 @@
                 throw new ArgumentNullException(nameof(FilePath));
             }
 
-            return System.IO.Path.Combine(Name, FilePath);
+            return Path.Combine(Name, FilePath);
         }
     }
 }

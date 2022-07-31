@@ -1,9 +1,10 @@
 ﻿using OpenQA.Selenium;
 using TheInternetApp.PageObjects.Pages.SortableDataTables.Interfaces;
+using TheInternetApp.PageObjects.Pages.SortableDataTables.Interfaces.InterfaceSegregationPrinciple;
 
 namespace TheInternetApp.PageObjects.Pages.SortableDataTables.DataTable;
 
-public class DataTable : IDataTable
+public class DataTable : IDataTable, IHeader
 {
     public IWebDriver? WebDriver { get; init; }
     public string TableId { get; init; }
@@ -14,13 +15,13 @@ public class DataTable : IDataTable
         TableId = tableId;
     }
 
-    public IWebElement GetColumnHeaderCell(int columnIndex)
+    public IWebElement? GetColumnHeaderCell(int columnIndex)
     {
-        IWebElement columnHeaderCell;
+        IWebElement? columnHeaderCell;
 
         try
         {
-            columnHeaderCell = WebDriver.FindElement(By.CssSelector($"#{TableId} > thead > tr > th:nth-child({columnIndex + 1})"));
+            columnHeaderCell = WebDriver?.FindElement(By.CssSelector($"#{TableId} > thead > tr > th:nth-child({columnIndex + 1})"));
         }
         catch (NoSuchElementException noSuchElementException)
         {
