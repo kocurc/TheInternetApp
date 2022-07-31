@@ -5,10 +5,10 @@ namespace TheInternetApp.PageObjects.Pages.SortableDataTables.DataTable;
 
 public class DataTable : IDataTable
 {
-    public IWebDriver WebDriver { get; init; }
+    public IWebDriver? WebDriver { get; init; }
     public string TableId { get; init; }
 
-    public DataTable(string tableId, IWebDriver webDriver)
+    public DataTable(string tableId, IWebDriver? webDriver)
     {
         WebDriver = webDriver;
         TableId = tableId;

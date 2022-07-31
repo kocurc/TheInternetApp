@@ -15,7 +15,7 @@
     "test:edge:headless": "testcafe edge:headless ./Tests --reporter list",
     "test:edge:headless:c3": "testcafe -c 3 edge:headless ./Tests --reporter list",
     "test:multiple": "testcafe chrome,firefox ./Tests",
-    "usability-test-pa11y": "./node_modules/.bin/pa11y-ci.ps1"
+    "usability-test-pa11y": "./node_modules/.bin/pa11y-ci"
   },
   "author": "",
   "license": "ISC",

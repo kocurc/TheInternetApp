@@ -58,11 +58,12 @@ jobs:
         ls ./TheInternetApp/bin/Debug/net6.0/
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Upload logs from System tests
-      uses: actions/upload-artifact@v3
-      with:
-        name: system-tests-logs
-        path: ./TheInternetApp/bin/Debug/net6.0/logs/
+    # Creating logs operation does not work on CI machine
+    #- name: Upload logs from System tests
+      #uses: actions/upload-artifact@v3
+      #with:
+        #name: system-tests-logs
+        #path: ./TheInternetApp/bin/Debug/net6.0/logs/
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
