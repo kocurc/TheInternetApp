@@ -99,23 +99,14 @@ jobs:
       working-directory: ./TheInternetApp/UiTests
       shell: pwsh
       run: npm install
-    - name: List bin pa11y folder # temporary step
-      working-directory: ./TheInternetApp/UiTests/
-      shell: pwsh
-      run: |
-        New-Item TempFolder -Type Directory
-        Get-ChildItem -Recurse | Out-File -FilePath .\TempFolder\file.txt
-    - name: Upload ls output
-      uses: actions/upload-artifact@v3
-      with:
-        name: ls-output
-        path: ./TheInternetApp/UiTests/TempFolder
     - name: Run usability tests script
       working-directory: ./TheInternetApp/UiTests
       shell: pwsh
-      run: |
-        npm run usability-test-pa11y
-        ls ./usability_tests_reports
+      run: npm run usability-test-pa11y
+    - name: List bin pa11y folder # temporary step
+      working-directory: ./TheInternetApp/UiTests/
+      shell: pwsh
+      run: Get-ChildItem
     - name: Upload usability tests reports
       uses: actions/upload-artifact@v3
       with:
