@@ -99,13 +99,14 @@ jobs:
       working-directory: ./TheInternetApp/UiTests
       shell: pwsh
       run: npm install
-    - name: Debugging with tmate
-      uses: mxschmitt/action-tmate@v3.11
+    #- name: Debugging with tmate
+      #uses: mxschmitt/action-tmate@v3.11
     - name: Run usability tests script
       working-directory: ./TheInternetApp/UiTests
       shell: pwsh
       run: npm run usability-test-pa11y
     - name: Upload usability tests reports
+      if: always()
       uses: actions/upload-artifact@v3
       with:
         name: upload-usability-tests-reports
