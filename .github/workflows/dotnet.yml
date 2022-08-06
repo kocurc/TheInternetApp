@@ -103,10 +103,6 @@ jobs:
       working-directory: ./TheInternetApp/UiTests
       shell: pwsh
       run: npm run usability-test-pa11y
-    - name: List bin pa11y folder # temporary step
-      working-directory: ./TheInternetApp/UiTests/node_modules/.bin
-      shell: bash
-      run: ls
     - name: Upload usability tests reports
       uses: actions/upload-artifact@v3
       with:
