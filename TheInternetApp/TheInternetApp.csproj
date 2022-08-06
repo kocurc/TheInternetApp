@@ -22,7 +22,7 @@
     <PackageReference Include="RestSharp" Version="108.0.1" />
     <PackageReference Include="Selenium.WebDriver" Version="4.3.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="103.0.5060.5300" />
-    <PackageReference Include="Selenium.WebDriver.MSEdgeDriver" Version="103.0.1264.37" />
+    <PackageReference Include="Selenium.WebDriver.MSEdgeDriver" Version="103.0.1264.62" />
   </ItemGroup>
 
   <ItemGroup>

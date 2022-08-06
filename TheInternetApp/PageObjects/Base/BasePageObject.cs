@@ -6,8 +6,10 @@ namespace TheInternetApp.PageObjects.Base;
 
 public abstract class BasePageObject
 {
-    public IWebDriver WebDriver;
-    public Actions Action;
+    public IWebDriver? WebDriver;
+    public Actions? Action;
+
+    protected BasePageObject() { }
 
     protected BasePageObject(IWebDriver webDriver)
     {
@@ -19,7 +21,7 @@ public abstract class BasePageObject
     {
         try
         {
-            WebDriver.Navigate().GoToUrl(uri);
+            WebDriver?.Navigate().GoToUrl(uri);
         }
         catch (WebDriverException webDriverException)
         {
@@ -35,14 +37,14 @@ public abstract class BasePageObject
 
     public void Refresh()
     {
-        WebDriver.Navigate().Refresh();
+        WebDriver?.Navigate().Refresh();
     }
 
     public void MoveToElement(IWebElement webElement)
     {
         try
         {
-            Action.MoveToElement(webElement).Perform();
+            Action?.MoveToElement(webElement).Perform();
         }
         catch (StaleElementReferenceException innerStaleElementReferenceException)
         {
