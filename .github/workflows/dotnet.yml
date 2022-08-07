@@ -75,7 +75,7 @@ jobs:
         name: build-artifacts-${{ matrix.operating-system }}-${{ matrix.web-browser }}
         path: ${{ github.workspace }} 
 
-  webBrowserUiTests:
+  webBrowserAndMobileUiTests:
     runs-on: ubuntu-latest
     needs: SetUpEnvironment
     steps:
@@ -89,10 +89,14 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 17.9.0
-    - name: Setup testcafe environment
+    - name: Setup testcafe webbrowser environment
       uses: DevExpress/testcafe-action@latest
       with:
         args: "chrome:headless ./TheInternetApp/UiTests/Tests"
+    - name: Setup testcafe webbrowser environment
+      uses: DevExpress/testcafe-action@latest
+      with:
+        args: "test:chrome:mobile:c3 ./TheInternetApp/UiTests/Tests"
 
   usabilityTests:
     runs-on: windows-latest
@@ -117,4 +121,3 @@ jobs:
       with:
         name: upload-usability-tests-reports
         path: ./TheInternetApp/UiTests/usability_tests_reports
-
