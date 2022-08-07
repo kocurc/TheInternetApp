@@ -12,6 +12,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+    - name: Lint Code Base
+      uses: github/super-linter@v4
+      env:
+        VALIDATE_ALL_CODEBASE: false
+        DEFAULT_BRANCH: master
     - name: Setup .NET environment
       uses: actions/setup-dotnet@v2
       with:
